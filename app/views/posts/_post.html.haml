@@ -1,0 +1,12 @@
+.card
+  %header.card-header
+    %p.card-header-title= post.name
+  .card-content
+    .content
+      = post.content
+      %a= link_to post.user.username post.user # Devise'a bağla
+  %footer.card-footer
+    -# İkon koy yerine, yakışır. İkon + kaç kez beğenilmiş
+    %a.card-footer-item Love it!
+    %a.card-footer-item Hate it!
+      
