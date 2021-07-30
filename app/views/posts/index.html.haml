@@ -1,2 +1,18 @@
-.container
+- if user_signed_in?
+  = render 'new_post', post: @the_new
+- else
+  #imageContainer
+    #main-picture= image_tag "kristina-flour-secret.jpg", alt: "It's a secret!"
+    #copyright.tag.is-black Kristina Flour - Upsplash
+    .content
+      %h2.title.has-text-centered.is-size-3
+        It's Our Secret!
+      %p.subtitle.has-text-centered.is-size-6
+        MembersOnly is a website where people share their secrets 
+        <br/>
+        Join us and tell your secrets!
+      .control.has-text-centered
+        = link_to "Sign up to reveal yourself!", new_user_registration_path, class: "button is-black"
+.box
+  %h1.title.has-text-right Our Secrets
   = render @posts

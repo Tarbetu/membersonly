@@ -1,0 +1,10 @@
+.box
+  = form_with model: post do |form|
+    .field
+      = form.label :name, "Title: ", class: "label"
+      .control= form.text_field :name, class: "input", placeholder: "Your secrets title"
+    .field
+      = form.label :content, "The Secret:", class: "label"
+      .control= form.text_area :content, class: "textarea", placeholder: "Your secret"
+    .field
+      .control= form.submit "Tell the secret", class: "button"

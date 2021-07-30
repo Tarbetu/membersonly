@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order 'created_at DESC'
+    @the_new = Post.new if user_signed_in?
   end
 
   def new

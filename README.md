@@ -1,24 +1,5 @@
-# README
+# What the hell is this?
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a board which people can express their secrets. You can see the secrets, but you can't see which secret belongs to. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is for the Odin Project. You might want to visit this page: [https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/authentication#your-task](The Authentication Project)

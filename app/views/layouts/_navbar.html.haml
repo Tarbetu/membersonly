@@ -1,0 +1,27 @@
+.navbar.is-fixed-top{ role:"navigation", "aria-label":"main navigation" }
+  .navbar-brand
+    = link_to "MembersOnly", root_path, class: "navbar-item"
+    %a.navbar-burger{ role:"button", "aria-label":"menu", "aria-expanded":"false", "data-target":"mainMenu" }
+      %span{ "aria-hidden": "true" }
+      %span{ "aria-hidden": "true" }
+      %span{ "aria-hidden": "true" }
+    .navbar-menu#mainMenu
+      .navbar-start
+        %a.navbar-item About this Project
+        %a.navbar-item The Users
+      .navbar-end
+        .navbar-item
+          #buttons
+            - if user_signed_in?
+              = link_to "My Posts", user_session_path, class: "button"
+              = link_to "Sign out", destroy_user_session_path, method: :delete, class: "button"
+            - else
+              = link_to "Log In", new_user_session_path, class: "button"
+              = link_to "Sign up", new_user_registration_path, class: "button is-primary"
+
+:javascript
+  const burger = document.querySelector(".navbar-burger");
+  const menu   = document.querySelector("#mainMenu");
+  burger.addEventListener("click", () => {
+    [burger.classList, menu.classList].forEach((i) => i.toggle("is-active"))
+  });
