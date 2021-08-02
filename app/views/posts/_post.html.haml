@@ -1,12 +1,29 @@
-.card
+.card.m-5
   %header.card-header
-    %p.card-header-title= post.name
+    %a.card-header-title= post.name
   .card-content
     .content
       = post.content
-      %a= link_to post.user.username post.user # Devise'a bağla
+      <br/>
+      - if user_signed_in?
+        .tag.is-dark= post.user.username
+        -# username olacak o
+      - else
+        .tag.is-dark 
+          It's out secret.  
+          <br/>
+          = link_to "Join us to see the secretive.", new_user_registration_path, class: "has-text-white is-underlined"
   %footer.card-footer
-    -# İkon koy yerine, yakışır. İkon + kaç kez beğenilmiş
-    %a.card-footer-item Love it!
-    %a.card-footer-item Hate it!
+    - liked_before = post.likes.find { |like| like.user_id == current_user.id }
+    - if liked_before
+      %a.card-footer-item
+        = button_to post_like_path(post, liked_before), method: :delete, class: "borderless" do
+          <i class="fas fa-heart-broken"></i> #{post.likes.count}
+    - else
+      %a.card-footer-item
+        = button_to post_likes_path(post), method: :post, class: "borderless" do
+          <i class="fas fa-heart"></i> #{post.likes.count}
+    - if current_user == post.user
+      %a.card-footer-item Delete it
+      %a.card-footer-item Edit it
       

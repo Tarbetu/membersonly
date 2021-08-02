@@ -1,0 +1,6 @@
+- if flash[:notice]
+  %article.message.is-dark
+    .message-body= notice
+- if flash[:alert]
+  %article.message.is-danger
+    .message-body= alert

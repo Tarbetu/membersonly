@@ -1,9 +1,13 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create]
+  before_action :authenticate_user!, expect: %i[index show]
 
   def index
     @posts = Post.all.order 'created_at DESC'
-    @the_new = Post.new if user_signed_in?
+    @the_new = current_user.posts.new if user_signed_in?
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -11,16 +15,20 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(new_post_params)
+    @post = current_user.posts.new(new_post_params)
 
     if @post.save
-      redirect_to @post, notice: 'Your post has been created'
+      flash[:notice] = 'Your secret has been published.'
+      redirect_to post_path(@post)
     else
-      render :new, alert: 'Your post did NOT created'
+      flash[:alert] = @post.errors.full_messages.join("\n")
+      render :new
     end
   end
 
+  private
+
   def new_post_params
-    params.require(:post).permit(:name, :content)
+    params.require(:post).permit(:name, :content, :user_id)
   end
 end

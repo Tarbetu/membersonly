@@ -7,12 +7,13 @@
       %span{ "aria-hidden": "true" }
     .navbar-menu#mainMenu
       .navbar-start
-        %a.navbar-item About this Project
+        = link_to "About this Project", "/pages/about", class: "navbar-item"
         %a.navbar-item The Users
       .navbar-end
         .navbar-item
           #buttons
             - if user_signed_in?
+              // User_session_path değil, profil sayfası
               = link_to "My Posts", user_session_path, class: "button"
               = link_to "Sign out", destroy_user_session_path, method: :delete, class: "button"
             - else

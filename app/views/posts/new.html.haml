@@ -1,6 +1,1 @@
-= form_with @post do |form|
-  = form.label :name, "Title:"
-  = form.text_field :name
-  = form.label :content, "The content:"
-  = form.text_field :content
-  = form.submit "Create new post!"
+= render 'new_post', post: @post
