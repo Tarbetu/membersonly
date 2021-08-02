@@ -11,11 +11,10 @@
         %a.navbar-item The Users
       .navbar-end
         .navbar-item
-          #buttons
+          #buttons.columns
             - if user_signed_in?
               // User_session_path değil, profil sayfası
-              = link_to "My Posts", user_session_path, class: "button"
-              = link_to "Sign out", destroy_user_session_path, method: :delete, class: "button"
+              = button_to "Sign out", destroy_user_session_path, method: :delete, class: "button"
             - else
               = link_to "Log In", new_user_session_path, class: "button"
               = link_to "Sign up", new_user_registration_path, class: "button is-primary"

@@ -14,16 +14,19 @@
           <br/>
           = link_to "Join us to see the secretive.", new_user_registration_path, class: "has-text-white is-underlined"
   %footer.card-footer
-    - liked_before = post.likes.find { |like| like.user_id == current_user.id }
+    - if user_signed_in?
+      - liked_before = post.likes.find { |like| like.user_id == current_user.id }
+    - else
+      - liked_before = nil
     - if liked_before
       %a.card-footer-item
-        = button_to post_like_path(post, liked_before), method: :delete, class: "borderless" do
+        = button_to post_like_path(post, liked_before), method: :delete, class: "borderless has-text-danger" do
           <i class="fas fa-heart-broken"></i> #{post.likes.count}
     - else
       %a.card-footer-item
-        = button_to post_likes_path(post), method: :post, class: "borderless" do
+        = button_to post_likes_path(post), method: :post, class: "borderless has-text-danger" do
           <i class="fas fa-heart"></i> #{post.likes.count}
     - if current_user == post.user
-      %a.card-footer-item Delete it
-      %a.card-footer-item Edit it
-      
+      %a.card-footer-item
+        = button_to post_path(post), method: :delete, class: "borderless" do
+          <i class="fas fa-trash"></i>
